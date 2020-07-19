@@ -43,7 +43,7 @@ public class ReportsUpdateServlet extends HttpServlet {
             Report r = em.find(Report.class, (Integer)(request.getSession().getAttribute("report_id")));
 
             r.setReport_date(Date.valueOf(request.getParameter("report_date")));
-            r.setTitle(request.getParameter("tilte"));
+            r.setTitle(request.getParameter("title"));
             r.setContent(request.getParameter("content"));
             r.setUpdated_at(new Timestamp(System.currentTimeMillis()));
 
@@ -57,8 +57,8 @@ public class ReportsUpdateServlet extends HttpServlet {
 
 
 
-                        RequestDispatcher rd = request.getRequestDispatcher("?WEB-INF/views/reports/edit.jsp");
-                        rd.forward(request, response);
+                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/edit.jsp");
+                rd.forward(request, response);
                 } else{
                     em.getTransaction().begin();
                     em.getTransaction().commit();
