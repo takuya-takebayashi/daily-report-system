@@ -1,6 +1,5 @@
 package models;
 
-
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -34,13 +33,16 @@ public class TimeCard {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "employee_id", nullable = false)
+    @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    @Column(name = "started_at", nullable = false)
+    @Column(name = "timecard_date")
+    private Timestamp timecard_date;
+
+    @Column(name = "started_at")
     private Timestamp started_at;
 
-    @Column(name = "finished_at", nullable = false)
+    @Column(name = "finished_at")
     private Timestamp finished_at;
 
     public Integer getId(){
@@ -59,6 +61,14 @@ public class TimeCard {
         this.employee = employee;
     }
 
+    public Timestamp getTimecard_date(){
+        return timecard_date;
+    }
+
+    public void setTimecard_date(Timestamp timecard_date){
+        this.timecard_date = timecard_date;
+    }
+
     public Timestamp getStarted_at(){
         return started_at;
     }
@@ -71,7 +81,7 @@ public class TimeCard {
         return finished_at;
     }
 
-    public void setfinishd_at(Timestamp finished_at){
+    public void setFinished_at(Timestamp finished_at){
         this.finished_at = finished_at;
     }
 
