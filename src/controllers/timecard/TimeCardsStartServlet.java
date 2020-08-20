@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Employee;
 import models.TimeCard;
 import utils.DBUtil;
 
@@ -36,9 +37,14 @@ public class TimeCardsStartServlet extends HttpServlet {
         // 出勤ボタンを押したらその時刻を記録する
         EntityManager tc = DBUtil.createEntityManager();
 
+        //ログインしている従業員情報を取得するコード
+        Employee login_employee =(Employee)request.getSession().getAttribute("login_employee");
+
         TimeCard m = new TimeCard();
 
         Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+
+        m.setEmployee(login_employee);
 
         m.setTimecard_date(currentTime);
         m.setStarted_at(currentTime);

@@ -23,6 +23,14 @@ import javax.persistence.Table;
             name = "getTimeCardsCount",
             query = "SELECT COUNT(r) FROM TimeCard AS r"
             ),
+    @NamedQuery(
+            name = "getMyAllTimeCards",
+            query = "SELECT r FROM TimeCard AS r WHERE r.employee = :employee ORDER BY r.id DESC"
+            ),
+    @NamedQuery(
+            name = "getMyTimeCardsCount",
+            query = "SELECT COUNT(r) FROM TimeCard AS r WHERE r.employee = :employee"
+            ),
 
 })
 @Entity

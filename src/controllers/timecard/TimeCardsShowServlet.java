@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Employee;
 import models.TimeCard;
 import utils.DBUtil;
 
@@ -36,14 +37,22 @@ public class TimeCardsShowServlet extends HttpServlet {
         // 勤怠の打刻履歴を確認する画面を表示する
         EntityManager tc = DBUtil.createEntityManager();
 
+      //ログインしている従業員情報を取得するコード
+        Employee login_employee =(Employee)request.getSession().getAttribute("login_employee");
+
         //データベースへ問い合わせ、結果をリスト形式で取得するコード
-        List<TimeCard> timecards = tc.createNamedQuery("getAllTimeCards", TimeCard.class).getResultList();
+        List<TimeCard> timecards = tc.createNamedQuery("getMyAllTimeCards", TimeCard.class)
+                .setParameter("employee", login_employee)
+                .getResultList();
+
+
 
         //問い合わせを閉じるコード
         tc.close();
 
         //リクエストスコープに取得したリストを渡すコード
         request.setAttribute("timecards", timecards);
+        request.setAttribute("login_employee", login_employee);
 
 
         //画面を遷移させる

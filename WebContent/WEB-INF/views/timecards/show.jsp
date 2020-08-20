@@ -13,9 +13,9 @@
                 </tr>
                 <c:forEach var="timecards" items="${timecards}" varStatus="status">
                     <tr class="row${status.count % 2}">
-                        <td class="timecard_date"><fmt:formatDate value='${timecards.timecard_date}' pattern='MM/DD' /></td>
-                        <td class="timecard_start"><fmt:formatDate value='${timecards.started_at}' pattern='HH:MM:SS' /></td>
-                        <td class="timecard_finish"><fmt:formatDate value='${timecards.finished_at}' pattern='HH:MM:SS' /></td>
+                        <td class="timecard_date"><fmt:formatDate value='${timecards.timecard_date}' pattern='yyyy-MM-dd' /></td>
+                        <td class="timecard_start"><fmt:formatDate value='${timecards.started_at}' pattern='HH:mm:ss' /></td>
+                        <td class="timecard_finish"><fmt:formatDate value='${timecards.finished_at}' pattern='HH:mm:ss' /></td>
                     </tr>
                 </c:forEach>
 
