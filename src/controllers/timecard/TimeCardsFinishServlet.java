@@ -52,6 +52,7 @@ public class TimeCardsFinishServlet extends HttpServlet {
         tc.getTransaction().begin();
         tc.persist(m);
         tc.getTransaction().commit();
+        request.getSession().setAttribute("flush", "今日も1日お疲れ様でした。");
         tc.close();
 
         // 記録したらnew.jspへ戻る

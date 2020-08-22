@@ -52,13 +52,13 @@ public class TimeCardsStartServlet extends HttpServlet {
         tc.getTransaction().begin();
         tc.persist(m);
         tc.getTransaction().commit();
+        request.getSession().setAttribute("flush", "おはようございます。今日も1日頑張りましょう！");
         tc.close();
 
         //記録できたらnew.jspの画面へ戻る
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/timecards/new.jsp");
         rd.forward(request, response);
-        //打刻ができたメッセージのフラッシュを入れる
-        //今後実装予定
+
     }
 
 }
